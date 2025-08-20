@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Master - Learn Prompt Engineering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game Header -->
+    <header class="game-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <h1 class="game-title">🧙‍♂️ AI PROMPT MASTER</h1>
+                <p class="game-subtitle">Master the Ancient Art of AI Summoning</p>
+            </div>
+            
+            <div class="stats-hud">
+                <div class="stat-item">
+                    <span class="stat-icon">💎</span>
+                    <span class="stat-label">Gems</span>
+                    <span class="stat-value" id="gems-display">5</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🪙</span>
+                    <span class="stat-label">Coins</span>
+                    <span class="stat-value" id="coins-display">100</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-label">Energy</span>
+                    <span class="stat-value" id="energy-display">100</span>
+                </div>
+                <div class="stat-item xp-stat">
+                    <span class="stat-icon">✨</span>
+                    <span class="stat-label">XP</span>
+                    <span class="stat-value" id="xp-display">0</span>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xp-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <button class="nav-btn active" data-screen="map">
+                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-text">World Map</span>
+                </button>
+                <button class="nav-btn" data-screen="portfolio">
+                    <span class="nav-icon">📜</span>
+                    <span class="nav-text">Portfolio</span>
+                </button>
+                <button class="nav-btn" data-screen="achievements">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Achievements</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Game Area -->
+    <main class="game-main">
+        <!-- World Map Screen -->
+        <section id="map-screen" class="screen active">
+            <div class="map-container">
+                <div class="map-header">
+                    <h2 class="map-title">The Realm of Prompt Mastery</h2>
+                    <p class="map-description">Choose your quest and begin your journey to master AI summoning</p>
+                </div>
+                
+                <div class="world-map">
+                    <svg class="map-svg" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Paths -->
+                        <defs>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/> 
+                                </feMerge>
+                            </filter>
+                            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#4ecdc4" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Connecting Paths -->
+                        <path d="M 150 450 Q 300 400 450 350" stroke="url(#pathGradient)" stroke-width="4" fill="none" class="map-path"/>
+                        <path d="M 450 350 Q 600 300 750 250" stroke="url(#pathGradient)" stroke-width="4" fill="none" class="map-path"/>
+                        <path d="M 750 250 Q 650 150 550 100" stroke="url(#pathGradient)" stroke-width="4" fill="none" class="map-path"/>
+                        <path d="M 550 100 Q 400 50 250 80" stroke="url(#pathGradient)" stroke-width="4" fill="none" class="map-path"/>
+                        
+                        <!-- Level Nodes -->
+                        <g class="level-node unlocked" data-level="1" transform="translate(150, 450)">
+                            <circle cx="0" cy="0" r="40" class="node-bg"/>
+                            <circle cx="0" cy="0" r="35" class="node-inner"/>
+                            <text x="0" y="8" class="node-icon">✨</text>
+                            <text x="0" y="65" class="node-title">Word Magic</text>
+                        </g>
+                        
+                        <g class="level-node locked" data-level="2" transform="translate(450, 350)">
+                            <circle cx="0" cy="0" r="40" class="node-bg"/>
+                            <circle cx="0" cy="0" r="35" class="node-inner"/>
+                            <text x="0" y="8" class="node-icon">🏰</text>
+                            <text x="0" y="65" class="node-title">Scene Crafting</text>
+                        </g>
+                        
+                        <g class="level-node locked" data-level="3" transform="translate(750, 250)">
+                            <circle cx="0" cy="0" r="40" class="node-bg"/>
+                            <circle cx="0" cy="0" r="35" class="node-inner"/>
+                            <text x="0" y="8" class="node-icon">💡</text>
+                            <text x="0" y="65" class="node-title">Light Mastery</text>
+                        </g>
+                        
+                        <g class="level-node locked" data-level="4" transform="translate(550, 100)">
+                            <circle cx="0" cy="0" r="40" class="node-bg"/>
+                            <circle cx="0" cy="0" r="35" class="node-inner"/>
+                            <text x="0" y="8" class="node-icon">🎨</text>
+                            <text x="0" y="65" class="node-title">Style Wielding</text>
+                        </g>
+                        
+                        <g class="level-node locked" data-level="5" transform="translate(250, 80)">
+                            <circle cx="0" cy="0" r="40" class="node-bg"/>
+                            <circle cx="0" cy="0" r="35" class="node-inner"/>
+                            <text x="0" y="8" class="node-icon">🧙‍♂️</text>
+                            <text x="0" y="65" class="node-title">Master Summoner</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <div class="quest-info" id="quest-info">
+                    <h3 class="quest-title">Ancient Wisdom</h3>
+                    <p class="quest-description">Click on an available quest to begin your journey into the mystical arts of prompt engineering. Each quest will teach you new skills and unlock greater powers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Screen -->
+        <section id="learning-screen" class="screen">
+            <div class="learning-container">
+                <button class="back-btn" id="back-to-map">
+                    <span>←</span> Back to Map
+                </button>
+                
+                <div class="learning-content" id="learning-content">
+                    <!-- Learning content will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Screen -->
+        <section id="practice-screen" class="screen">
+            <div class="practice-container">
+                <button class="back-btn" id="back-to-learning">
+                    <span>←</span> Back to Learning
+                </button>
+                
+                <div class="practice-content" id="practice-content">
+                    <!-- Practice content will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section id="results-screen" class="screen">
+            <div class="results-container">
+                <div class="results-content" id="results-content">
+                    <!-- Results content will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Screen -->
+        <section id="portfolio-screen" class="screen">
+            <div class="portfolio-container">
+                <h2 class="screen-title">Your Magical Portfolio</h2>
+                <p class="screen-description">A collection of all the wonders you've summoned</p>
+                
+                <div class="portfolio-actions">
+                    <button class="download-btn" id="download-portfolio">📥 Download Portfolio</button>
+                    <button class="clear-btn" id="clear-portfolio">🗑️ Clear All</button>
+                </div>
+                
+                <div class="portfolio-grid" id="portfolio-grid">
+                    <div class="empty-portfolio">
+                        <div class="empty-icon">📜</div>
+                        <h3>Your Portfolio Awaits</h3>
+                        <p>Complete quests to fill your portfolio with magical creations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Screen -->
+        <section id="achievements-screen" class="screen">
+            <div class="achievements-container">
+                <h2 class="screen-title">Hall of Achievements</h2>
+                <p class="screen-description">Your legendary accomplishments</p>
+                
+                <div class="achievements-grid" id="achievements-grid">
+                    <!-- Achievements will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Summoning Your Creation...</h3>
+            <p>The AI spirits are working their magic</p>
+        </div>
+    </div>
+
+    <!-- Notification System -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

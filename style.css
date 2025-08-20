@@ -1543,3 +1543,52 @@ html {
   background: rgba(0, 212, 255, 0.3);
   color: var(--text-primary);
 }
+
+
+/* Fix flickering level icons */
+.level-node {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  
+  /* Use transform instead of margin/size changes */
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  will-change: transform;
+}
+
+/* Bigger invisible hit area to prevent cursor "leaving" */
+.level-node::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+}
+
+/* Hover effect that doesn't change layout */
+.level-node:hover {
+  transform: translateZ(0) scale(1.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+/* Make sure only the wrapper is clickable */
+.level-node * {
+  pointer-events: none;
+}
+
+/* Prevent other elements from interfering */
+.level-connector, .map-background, .level-label {
+  pointer-events: none;
+  z-index: 1;
+}

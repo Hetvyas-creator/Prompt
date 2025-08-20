@@ -654,13 +654,17 @@ detectSpatialWords(prompt) {
         });
 
         // Level nodes
-        document.addEventListener('click', (e) => {
-            const levelNode = e.target.closest('.level-node');
-            if (levelNode && !levelNode.classList.contains('locked')) {
-                const levelId = parseInt(levelNode.getAttribute('data-level'));
-                this.startLevel(levelId);
-            }
-        });
+        // Replace your current level click handler with this
+document.addEventListener('click', (e) => {
+    const levelNode = e.target.closest('.level-node');
+    if (levelNode && !levelNode.classList.contains('locked')) {
+        const levelId = parseInt(levelNode.getAttribute('data-level'), 10);
+        if (Number.isFinite(levelId)) {
+            this.startLevel(levelId);
+        }
+    }
+});
+
 
         // Back buttons
         document.addEventListener('click', (e) => {
